@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>عمارت عروس تن‌آرا — رزرو</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --rose:#C65472; --rose-deep:#99355A; --gold:#D9AE66; --teal:#2FA193; --teal-deep:#1D6B63;
+  --ink:#35262B; --muted:#7D6A6E;
+  --glass-bg:rgba(255,255,255,.52); --glass-bg-2:rgba(255,255,255,.72); --glass-line:rgba(255,255,255,.65);
+  --shadow:0 18px 38px -20px rgba(140,50,90,.45);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#F4E9EC; --muted:#C4ACB2;
+    --glass-bg:rgba(40,24,32,.55); --glass-bg-2:rgba(48,28,38,.75); --glass-line:rgba(255,255,255,.12);
+    --shadow:0 18px 38px -20px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#F4E9EC; --muted:#C4ACB2;
+  --glass-bg:rgba(40,24,32,.55); --glass-bg-2:rgba(48,28,38,.75); --glass-line:rgba(255,255,255,.12);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);}
+*{box-sizing:inherit;}
+body{
+  margin:0; min-height:100%; color:var(--ink); font-family:"Vazirmatn",Tahoma,sans-serif;
+  -webkit-tap-highlight-color:transparent;
+  background:
+    radial-gradient(500px 420px at 8% -5%, rgba(198,84,114,.35), transparent 60%),
+    radial-gradient(520px 460px at 100% 15%, rgba(47,161,147,.30), transparent 60%),
+    radial-gradient(600px 500px at 50% 100%, rgba(217,174,102,.28), transparent 60%),
+    #F7EEEA;
+  background-attachment:fixed;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) body{ background-color:#1A1116; } }
+:root[data-theme="dark"] body{ background-color:#1A1116; }
+
+.wrap{max-width:480px; margin:0 auto; padding:calc(env(safe-area-inset-top,0px) + 22px) 18px 40px;}
+
+.header{text-align:center; margin-bottom:20px;}
+.header .badge{
+  display:inline-flex; width:52px; height:52px; border-radius:18px; align-items:center; justify-content:center;
+  background:var(--glass-bg); backdrop-filter:blur(14px) saturate(160%); -webkit-backdrop-filter:blur(14px) saturate(160%);
+  border:1px solid var(--glass-line); box-shadow:var(--shadow); margin-bottom:12px;
+}
+.header .badge svg{width:26px; height:26px; stroke:var(--gold); fill:none; stroke-width:1.4;}
+.header h1{margin:0; font-size:21px; font-weight:800; background:linear-gradient(90deg, var(--rose-deep), var(--teal-deep)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.header p{margin:6px 0 0; font-size:13px; color:var(--muted);}
+
+.glass{
+  background:var(--glass-bg); backdrop-filter:blur(16px) saturate(160%); -webkit-backdrop-filter:blur(16px) saturate(160%);
+  border:1px solid var(--glass-line); border-radius:22px; box-shadow:var(--shadow);
+}
+.section{padding:18px; margin-bottom:14px;}
+.section .label{font-size:13px; font-weight:700; color:var(--rose-deep); margin-bottom:12px;}
+.label small{font-weight:400; color:var(--muted); font-size:11.5px;}
+
+.type-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.type-card{
+  border:1px solid var(--glass-line); border-radius:16px; padding:16px 8px; text-align:center;
+  background:var(--glass-bg-2); font-size:13.5px; font-weight:700; color:var(--ink); transition:box-shadow .15s, transform .15s;
+}
+.type-card svg{width:26px; height:26px; stroke:var(--rose); fill:none; stroke-width:1.6; margin:0 auto 8px;}
+.type-card.active{box-shadow:0 0 0 2px var(--rose) inset, 0 10px 20px -10px rgba(198,84,114,.5); transform:translateY(-1px);}
+.type-card.active svg{stroke:var(--rose-deep);}
+
+.date-grid{display:grid; grid-template-columns:1fr 1.3fr 1fr; gap:8px;}
+select, input{
+  width:100%; background:var(--glass-bg-2); border:1px solid var(--glass-line); border-radius:13px;
+  padding:12px 10px; color:var(--ink); font-family:inherit; font-size:14px; appearance:none;
+}
+select:focus, input:focus{outline:2px solid var(--teal); outline-offset:1px;}
+
+.field{margin-top:12px;}
+.field:first-child{margin-top:0;}
+.field label{font-size:12.5px; color:var(--muted); display:block; margin-bottom:6px;}
+
+.drop{
+  border:1.5px dashed var(--glass-line); border-radius:16px; padding:18px 12px; text-align:center;
+  background:var(--glass-bg-2); position:relative; cursor:pointer;
+}
+.drop svg{width:26px; height:26px; stroke:var(--teal-deep); fill:none; stroke-width:1.6; margin:0 auto 8px;}
+.drop p{margin:0; font-size:12.5px; color:var(--muted);}
+.drop input{position:absolute; inset:0; opacity:0; cursor:pointer;}
+.preview{display:none; align-items:center; gap:10px; margin-top:10px; background:var(--glass-bg-2); border:1px solid var(--glass-line); border-radius:14px; padding:8px;}
+.preview.show{display:flex;}
+.preview img{width:44px; height:44px; object-fit:cover; border-radius:10px;}
+.preview .pname{flex:1; font-size:12px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+.preview button{border:none; background:none; color:var(--rose-deep); font-size:12px; font-weight:700;}
+
+.hint{font-size:11.5px; color:var(--muted); margin-top:8px; line-height:1.7;}
+.err{color:var(--rose-deep); font-size:12.5px; margin-top:8px; display:none;}
+.err.show{display:block;}
+
+.submit-btn{
+  width:100%; border:1px solid var(--glass-line); color:#fff; font-family:inherit; font-weight:800; font-size:15.5px;
+  padding:17px; border-radius:18px; box-shadow:var(--shadow); position:relative; overflow:hidden;
+  background:linear-gradient(120deg, var(--rose) 0%, var(--rose-deep) 55%, var(--teal-deep) 100%);
+}
+.submit-btn::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,255,255,.25), transparent 55%);}
+.submit-btn:active{transform:scale(.98);}
+
+.done{display:none; text-align:center; padding:12px 4px;}
+.done.show{display:block;}
+.done .ok{width:62px; height:62px; margin:0 auto 16px; border-radius:50%; background:var(--glass-bg); backdrop-filter:blur(14px); border:1px solid var(--glass-line); display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow);}
+.done .ok svg{width:28px; height:28px; stroke:var(--teal-deep); fill:none; stroke-width:2;}
+.done h2{margin:0 0 8px; font-size:18px; color:var(--rose-deep);}
+.done p{margin:0 0 16px; color:var(--muted); font-size:13.5px; line-height:1.9;}
+.summary{text-align:right; font-size:13px; line-height:2.1; padding:16px;}
+.summary b{color:var(--rose-deep);}
+.formview.hide{display:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="header">
+    <div class="badge"><svg viewBox="0 0 24 24"><path d="M12 3c-2 2-2 4 0 5-2-1-4-1-5 1 2 0 3 1 3 3-2 1-3 2-3 4h10c0-2-1-3-3-4 0-2 1-3 3-3-1-2-3-2-5-1 2-1 2-3 0-5z"/></svg></div>
+    <h1>عمارت عروس تن‌آرا</h1>
+    <p>رزرو تاریخ با ثبت بیعانه</p>
+  </div>
+
+  <div class="formview" id="formview">
+    <div class="section glass">
+      <div class="label">نوع رزرو</div>
+      <div class="type-grid" id="typeGrid">
+        <button class="type-card active" data-type="bride">
+          <svg viewBox="0 0 24 24"><path d="M12 3v6M9 9h6l3 12H6L9 9z"/></svg>
+          عروس
+        </button>
+        <button class="type-card" data-type="guest">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+          غیرعروس <small style="display:block;font-weight:400;margin-top:2px">میکاپ/مهمان</small>
+        </button>
+      </div>
+    </div>
+
+    <div class="section glass">
+      <div class="label">برای چه روزی می‌خوای رزرو کنی؟</div>
+      <div class="date-grid">
+        <select id="dDay"></select>
+        <select id="dMonth"></select>
+        <select id="dYear"></select>
+      </div>
+    </div>
+
+    <div class="section glass">
+      <div class="label">مشخصات شما</div>
+      <div class="field"><label>نام و نام خانوادگی</label><input id="fName" placeholder="مثلاً سارا محمدی"></div>
+      <div class="field"><label>شماره تماس</label><input id="fPhone" inputmode="tel" placeholder="09xxxxxxxxx"></div>
+      <div class="field"><label>مبلغ بیعانه‌ای که پرداخت می‌کنید (تومان)</label><input id="fAmount" inputmode="numeric" placeholder="مبلغ دلخواه شما"></div>
+    </div>
+
+    <div class="section glass">
+      <div class="label">فیش واریزی بیعانه</div>
+      <label class="drop" id="dropZone">
+        <svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg>
+        <p>برای انتخاب عکس فیش ضربه بزنید</p>
+        <input type="file" id="fReceipt" accept="image/*">
+      </label>
+      <div class="preview" id="previewBox">
+        <img id="previewImg" alt="">
+        <div class="pname" id="previewName"></div>
+        <button id="removeFile" type="button">حذف</button>
+      </div>
+      <div class="err" id="errMsg"></div>
+    </div>
+
+    <button class="submit-btn" id="submitBtn">ثبت درخواست رزرو</button>
+    <div class="hint">پس از ثبت، درخواست شما همراه با فیش برای بررسی و تایید نهایی ارسال می‌شود.</div>
+  </div>
+
+  <div class="done glass" id="doneView">
+    <div class="ok"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div>
+    <h2>درخواست شما ثبت شد</h2>
+    <p>به‌زودی نتیجه‌ی بررسی فیش برایتان ارسال می‌شود.</p>
+    <div class="summary" id="summaryBox"></div>
+  </div>
+
+</div>
+
+<script>
+const MONTHS = ["فروردین","اردیبهشت","خرداد","تیر","مرداد","شهریور","مهر","آبان","آذر","دی","بهمن","اسفند"];
+const dDay=document.getElementById('dDay'), dMonth=document.getElementById('dMonth'), dYear=document.getElementById('dYear');
+for(let i=1;i<=31;i++) dDay.innerHTML += '<option value="'+i+'">'+i+'</option>';
+MONTHS.forEach(function(m,i){ dMonth.innerHTML += '<option value="'+(i+1)+'">'+m+'</option>'; });
+for(let y=1404;y<=1407;y++) dYear.innerHTML += '<option value="'+y+'">'+y+'</option>';
+
+let selType = 'bride';
+let receiptData = null;
+
+document.getElementById('typeGrid').addEventListener('click', function(e){
+  const btn = e.target.closest('.type-card');
+  if(!btn) return;
+  selType = btn.dataset.type;
+  document.querySelectorAll('.type-card').forEach(function(b){ b.classList.toggle('active', b===btn); });
+});
+
+document.getElementById('fReceipt').addEventListener('change', function(e){
+  const file = e.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(ev){
+    receiptData = ev.target.result;
+    document.getElementById('previewImg').src = receiptData;
+    document.getElementById('previewName').textContent = file.name;
+    document.getElementById('previewBox').classList.add('show');
+  };
+  reader.readAsDataURL(file);
+});
+document.getElementById('removeFile').addEventListener('click', function(){
+  receiptData = null;
+  document.getElementById('fReceipt').value = '';
+  document.getElementById('previewBox').classList.remove('show');
+});
+
+const TYPE_LABEL = {bride:'👰 عروس', guest:'💄 غیرعروس (میکاپ/مهمان)'};
+
+document.getElementById('submitBtn').addEventListener('click', function(){
+  const name = document.getElementById('fName').value.trim();
+  const phone = document.getElementById('fPhone').value.trim();
+  const amount = document.getElementById('fAmount').value.trim();
+  const err = document.getElementById('errMsg');
+  if(!name || !phone || !amount || !receiptData){
+    err.textContent = 'لطفاً همه‌ی فیلدها را تکمیل و عکس فیش را انتخاب کنید.';
+    err.classList.add('show');
+    return;
+  }
+  err.classList.remove('show');
+  const dateStr = dYear.value + '/' + String(dMonth.value).padStart(2,'0') + '/' + String(dDay.value).padStart(2,'0');
+
+  document.getElementById('formview').classList.add('hide');
+  document.getElementById('doneView').classList.add('show');
+  document.getElementById('summaryBox').innerHTML =
+    'نوع رزرو: <b>' + TYPE_LABEL[selType] + '</b><br>تاریخ: <b>' + dateStr + '</b><br>نام: <b>' + name +
+    '</b><br>تماس: <b>' + phone + '</b><br>مبلغ بیعانه: <b>' + Number(amount).toLocaleString('fa-IR') + ' تومان</b>';
+});
+</script>
+</body>
+</html>
